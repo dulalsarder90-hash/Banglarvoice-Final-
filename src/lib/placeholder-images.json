@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-news",
+      "description": "Breaking news banner",
+      "imageUrl": "https://picsum.photos/seed/news1/1200/600",
+      "imageHint": "news breaking"
+    },
+    {
+      "id": "sports-news",
+      "description": "Football match",
+      "imageUrl": "https://picsum.photos/seed/sports/800/400",
+      "imageHint": "football sports"
+    },
+    {
+      "id": "tech-news",
+      "description": "AI Technology",
+      "imageUrl": "https://picsum.photos/seed/tech/800/400",
+      "imageHint": "ai technology"
+    }
+  ]
+}

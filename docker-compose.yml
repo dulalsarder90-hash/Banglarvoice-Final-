@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  nextjs:
+    build: .
+    container_name: banglar-voice-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:banglarvoice_secure_pass@db:5432/banglarvoice
+      - NEXT_PUBLIC_SITE_URL=https://banglarvoice24news.com
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    container_name: banglar-voice-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: banglarvoice_secure_pass
+      POSTGRES_DB: banglarvoice
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: banglar-voice-n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=n8n.banglarvoice24news.com
+      - NODE_ENV=production
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  postgres_data:
+  n8n_data:
